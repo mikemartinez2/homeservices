@@ -21,16 +21,19 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plu
 
 sudo docker version
 
+#Install Docker Compose
+sudo apt -y install docker-compose
 
 #Create Dir for HomeServices
 cd ~
-sudo mkdir docker_configs
+mkdir docker_configs
 cd docker_configs
 mkdir homebridge
 
 #Create Homebrigde Docker Compose File
 cd homebridge
-echo "version: '2'
+sudo cat > docker-compose.yml << EOF
+version: '2'
 services:
   homebridge:
     image: oznu/homebridge:latest
@@ -42,13 +45,13 @@ services:
       driver: json-file
       options:
         max-size: "10mb"
-        max-file: "1"" > docker-compose.yml
+        max-file: "1"
+EOF
 
 #Install Homebridge Docker Image
 cd ~/docker_configs/homebridge
-docker-compose pull
+sudo docker-compose pull
 
-docker-compose up -d
+sudo docker-compose up -d
 
-
-
+sudo docker container ls
