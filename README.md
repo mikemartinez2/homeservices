@@ -1,9 +1,8 @@
-Will need to add USER acct to sudoers for no passwords before running script
+Will need to run the updatesudoers.sh first.
 
-sudo visudo
+git clone git clone https://github.com/mikemartinez2/homeservices.git
 
-add the following under "%sudo   ALL=(ALL:ALL) ALL" line:
+cd homeservices
 
-#Allow user $USER_NAME to sudo without password
-$USER_NAME ALL=(ALL) NOPASSWD:ALL
-
+chmod 755 homeservices.sh
+chmod 755 updatesudoers.sh
